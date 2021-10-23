@@ -18,7 +18,7 @@ def get_schedules():
 
     TIME_DIFF = datetime.timedelta(hours=9)
 
-    TODAY = datetime.datetime.now()
+    today = datetime.date.today()
 
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
@@ -43,10 +43,10 @@ def get_schedules():
 
         # Call the Calendar API
         timefrom = datetime.datetime.strptime(
-            TODAY.strftime('%Y/%m/%d'), '%Y/%m/%d'
+            today.strftime('%Y/%m/%d'), '%Y/%m/%d'
         ).isoformat()+'Z'
         timeto = (datetime.datetime.strptime(
-            TODAY.strftime('%Y/%m/%d'), '%Y/%m/%d'
+            today.strftime('%Y/%m/%d'), '%Y/%m/%d'
         )+datetime.timedelta(days=1)).isoformat()+'Z'
         events_result = service.events().list(calendarId=ID,
                                               timeMin=timefrom,
@@ -56,15 +56,15 @@ def get_schedules():
         events = events_result.get('items', [])
 
         if not events:
-            message = f"\n{TODAY.strftime('%m月%d日')}の予定はありません"
+            message = f"\n{today.strftime('%m月%d日')}の予定はありません"
             return message
 
-        message = f"\n{TODAY.strftime('%m月%d日')}の予定\n\n"
+        message = f"\n{today.strftime('%m月%d日')}の予定\n\n"
         for event in events:
             start = datetime.datetime.strptime(
                 event['start']['dateTime'], '%Y-%m-%dT%H:%M:%SZ') + TIME_DIFF
 
-            if start.strftime('%Y/%m/%d') == TODAY.strftime('%Y/%m/%d'):
+            if start.strftime('%Y/%m/%d') == today.strftime('%Y/%m/%d'):
                 message += f"{start.strftime('%H:%M ')}{event['summary']}\n"
 
         return message

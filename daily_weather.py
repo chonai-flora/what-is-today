@@ -13,7 +13,7 @@ def get_weather(area_name='Tokyo'):
     area_code = ''.join(key)
 
     if area_code == '':
-        error_message = (
+        message = (
             "\n"
             "天気情報を取得することができませんでした。エリア名を再確認してください。\n"
             "例: '大阪府', 'Kyoto'\n"
@@ -22,7 +22,7 @@ def get_weather(area_name='Tokyo'):
             "https://www.jma.go.jp/bosai/forecast/"
         )
 
-        return error_message
+        return message
 
     url = 'https://www.jma.go.jp/bosai/forecast/data/overview_forecast/'+area_code+'.json'
     forecast_data = requests.get(url).json()

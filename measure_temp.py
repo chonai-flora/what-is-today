@@ -12,7 +12,7 @@ def get_temp():
 
 def main():
     message = get_temp()
-    notice.notice()
+    notice.notice(message)
 
 
 if __name__ == '__main__':

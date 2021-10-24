@@ -16,11 +16,11 @@ GCPにアクセスしGoogle Calendar APIを有効にする
 
 認証完了後に```'token.pickle'```ファイルが作られる
 
-## 引用元URL
-https://notify-api.line.me/api/notify
-
+## データ引用元URL
 https://zatsuneta.com/category/anniversary.html
 
 https://www.jma.go.jp/bosai/forecast/
 
 https://www.jma.go.jp/bosai/common/const/area.json
+
+https://calendar.google.com/calendar/
